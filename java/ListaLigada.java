@@ -106,7 +106,7 @@ public class ListaLigada implements EstruturaDeDados{
         }
     }
 
-   /*  public static void main(String[] args) {
+   public static void main(String[] args) {
         for (int i = 0; i < 100; i++) {
             System.out.println(i);
             if (i == 50){
@@ -114,7 +114,7 @@ public class ListaLigada implements EstruturaDeDados{
             }
         }
         System.out.println("fim");
-    }*/
+    }
 
     @Override
     public boolean insert(int chave) {
@@ -281,22 +281,6 @@ public class ListaLigada implements EstruturaDeDados{
     public boolean isEmpty(){
         return inicio == null;
     }
-    
-    public static void main(String[] args) {
-    ListaLigada lista = new ListaLigada();
-    lista.insert(10);
-    lista.insert(205);
-    lista.insert(20);
-    lista.insert(2);
-    System.out.println("tamanho: "+lista.getTamanho());
-    System.out.println( "Inicio: " +lista.getInicio().getValor());
-    System.out.println( "Fim: " +lista.getFim().getValor());
-    System.out.println("Máximo: "+lista.maximum());
-    System.out.println("mínimo: "+lista.minimum());
-    System.out.println("Sucessor: "+lista.sucessor(10));
-    System.out.println("Prodessor: "+lista.prodessor(10));
-    }
 
-    
 }
     
