@@ -1,5 +1,17 @@
 public class ListaLigada implements EstruturaDeDados{
     private No inicio;
+    private No fim;
+    private int tamanho;
+
+    public ListaLigada(){
+        this.inicio = null;
+        this.fim = null;
+        this.tamanho = 0;
+    }
+
+    public void ListaArray(){
+        this.tamanho = 0;
+    } 
 
     public void removeInicio (){
         if (inicio != null)
@@ -94,7 +106,7 @@ public class ListaLigada implements EstruturaDeDados{
         }
     }
 
-    public static void main(String[] args) {
+   /*  public static void main(String[] args) {
         for (int i = 0; i < 100; i++) {
             System.out.println(i);
             if (i == 50){
@@ -102,47 +114,189 @@ public class ListaLigada implements EstruturaDeDados{
             }
         }
         System.out.println("fim");
-    }
+    }*/
 
     @Override
     public boolean insert(int chave) {
-        // TODO Auto-generated method stub
-        return false;
+        if(isEmpty()){
+            inicio = new No(chave);
+            fim = inicio;
+            tamanho++;
+            return true;
+        }
+        else{
+            No pointer = new No(chave);
+            fim.setProximo(pointer);
+            fim = pointer;
+            tamanho++;
+            return true;
+        }
     }
 
     @Override
     public boolean delete(int chave) {
-        // TODO Auto-generated method stub
+        
         return false;
     }
 
     @Override
     public boolean search(int chave) {
-        // TODO Auto-generated method stub
-        return false;
+       
+        if(isEmpty()){
+            return false;
+            
+        }
+        else{
+            No pointer = inicio;
+            while(pointer != null){
+                if(pointer.getValor() == chave){
+                    return true;
+                }
+                pointer = pointer.getProximo();
+            }
+            return false;
+        }
+
     }
 
     @Override
     public int minimum() {
-        // TODO Auto-generated method stub
-        return 0;
+        
+        if(isEmpty()){
+            return -1;
+        }
+        else{
+            No pointer = inicio;
+            int menor = pointer.getValor();
+            while(pointer != null){
+                if(pointer.getValor() < menor){
+                    menor = pointer.getValor();
+                }
+                pointer = pointer.getProximo();
+            }
+            return menor;
+        }
+
+
     }
 
     @Override
     public int maximum() {
-        // TODO Auto-generated method stub
-        return 0;
+        if(isEmpty()){
+            return -1;
+        }
+        else{
+            No pointer = inicio;
+            int maior = pointer.getValor();
+            while(pointer != null){
+                if(pointer.getValor() > maior){
+                    maior = pointer.getValor();
+                }
+                pointer = pointer.getProximo();
+            }
+            return maior;
+        }
     }
 
     @Override
     public int sucessor(int chave) {
-        // TODO Auto-generated method stub
-        return 0;
+        if(isEmpty()){
+            return -1;
+        }
+        else{
+            if(search(chave)){
+                 No pointer = inicio;
+                 while(pointer != null){
+                      if(pointer.getValor() == chave){
+                           if(pointer.getProximo() != null){
+                             return pointer.getProximo().getValor();
+                           }
+                           else{
+                             return -1;
+                           }
+                      }
+                      pointer = pointer.getProximo();
+                 }
+            }
+            else{
+                return -1;
+            }
+            return -1;
+         }
+
     }
 
     @Override
     public int prodessor(int chave) {
-        // TODO Auto-generated method stub
-        return 0;
+        if(isEmpty()){
+            return -1;
+        }
+        else{
+            if(chave == inicio.getValor()){
+                return -1;
+            }
+            if(search(chave)){
+                No pointer = inicio;
+                while(pointer != null){
+                    if(pointer.getProximo().getValor() == chave){
+                        if(pointer.getProximo() != null){
+                            return pointer.getProximo().getValor();
+                        }
+                        else{
+                            return -1;
+                        }
+                    }
+                    pointer = pointer.getProximo();
+                }
+            }
+            
+            return -1;
+        }
     }
+    
+    public No getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(No inicio) {
+        this.inicio = inicio;
+    }
+
+    public No getFim() {
+        return fim;
+    }
+
+    public void setFim(No fim) {
+        this.fim = fim;
+    }
+
+    public int getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(int tamanho) {
+        this.tamanho = tamanho;
+    }
+
+    public boolean isEmpty(){
+        return inicio == null;
+    }
+    
+    public static void main(String[] args) {
+    ListaLigada lista = new ListaLigada();
+    lista.insert(10);
+    lista.insert(205);
+    lista.insert(20);
+    lista.insert(2);
+    System.out.println("tamanho: "+lista.getTamanho());
+    System.out.println( "Inicio: " +lista.getInicio().getValor());
+    System.out.println( "Fim: " +lista.getFim().getValor());
+    System.out.println("Máximo: "+lista.maximum());
+    System.out.println("mínimo: "+lista.minimum());
+    System.out.println("Sucessor: "+lista.sucessor(10));
+    System.out.println("Prodessor: "+lista.prodessor(10));
+    }
+
+    
 }
+    

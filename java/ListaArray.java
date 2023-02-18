@@ -1,9 +1,12 @@
-
 public class ListaArray implements EstruturaDeDados{
-
+    private No inicio;
+   
     @Override
     public boolean insert(int chave) {
-        // TODO Auto-generated method stub
+        if (inicio == null){
+            inicio = new No(chave);
+        }
+        
         return false;
     }
 
